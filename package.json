@@ -9,6 +9,7 @@
     "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "@turf/bearing": "^6.0.1",
     "axios": "^0.18.0",
     "vue": "^2.6.6"
   },

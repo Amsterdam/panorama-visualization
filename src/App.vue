@@ -20,6 +20,7 @@
 /* global mapboxgl */
 
 import axios from 'axios'
+import bearing from '@turf/bearing'
 
 function makeFeatureCollection (coordinates, properties={}) {
   return {
@@ -43,8 +44,9 @@ export default {
       frames: [],
       sequence: undefined,
       selectedSurface: undefined,
-      speed: 250,
-      thumbnail: undefined
+      speed: 150,
+      thumbnail: undefined,
+      previousPoint: undefined
     }
   },
   methods: {
@@ -124,12 +126,19 @@ export default {
       const imageId = this.sequence.properties.coordinateProperties.imageId[index[0]][index[1]]
 
       if (!this.thumbnail || currentTime > this.thumbnail.timestamp + 750) {
+        let b = 0
+        if (this.previousPoint) {
+          b = bearing(this.previousPoint.features[0], point.features[0])
+        }
+
         this.thumbnail = {
           id: imageId,
-          heading: 100,
-          timestamp: currentTime
+          heading: b,
+          timestamp: currentTime,
         }
       }
+
+      this.previousPoint = point
 
       this.map.getSource('point').setData(point)
 
@@ -138,6 +147,11 @@ export default {
           this.animate(startTime)
         })
       }
+    }
+  },
+  watch: {
+    sequence: function () {
+
     }
   },
   mounted: function () {
