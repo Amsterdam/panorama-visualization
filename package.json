@@ -1,13 +1,15 @@
 {
-  "name": "panorama-visualization2",
+  "name": "panorama-visualization",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "vue": "^2.6.6"
   },
   "devDependencies": {
@@ -17,6 +19,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "push-dir": "^0.4.1",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
