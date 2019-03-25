@@ -183,7 +183,7 @@ export default {
         // maxzoom: 19,
         source: {
           type: 'vector',
-          tiles: ['https://amsterdam.github.io/panorama-visualization-data/sequences/tiles/{z}/{x}/{y}.pbf'],
+          tiles: ['https://amsterdam.github.io/panorama-visualization-data/tiles/{z}/{x}/{y}.pbf'],
           maxzoom: 14
         },
         'source-layer': 'sequences',
@@ -235,7 +235,7 @@ export default {
 
       this.map = map
 
-      axios.get('https://amsterdam.github.io/panorama-visualization-data/sequences/stats.json')
+      axios.get('https://amsterdam.github.io/panorama-visualization-data/stats.json')
         .then((response) => response.data)
         .then((data) => {
           this.sequences = data.sequences
