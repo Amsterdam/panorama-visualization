@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     listClick: function (sequence) {
-      const baseUrl = 'http://localhost:8875/sequences'
+      const baseUrl = 'https://amsterdam.github.io/panorama-visualization-data/sequences'
       const path = sequence.capturedAt.slice(0, 10).replace(new RegExp('-', 'g'), '/')
 
       const url = `${baseUrl}/${path}/${sequence.id}.geojson`
@@ -183,7 +183,7 @@ export default {
         // maxzoom: 19,
         source: {
           type: 'vector',
-          tiles: ['http://localhost:8875/tiles/{z}/{x}/{y}.pbf'],
+          tiles: ['https://amsterdam.github.io/panorama-visualization-data/sequences/tiles/{z}/{x}/{y}.pbf'],
           maxzoom: 14
         },
         'source-layer': 'sequences',
@@ -235,7 +235,7 @@ export default {
 
       this.map = map
 
-      axios.get('http://localhost:8875/stats.json')
+      axios.get('https://amsterdam.github.io/panorama-visualization-data/sequences/stats.json')
         .then((response) => response.data)
         .then((data) => {
           this.sequences = data.sequences
@@ -247,7 +247,6 @@ export default {
 
 <style>
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
